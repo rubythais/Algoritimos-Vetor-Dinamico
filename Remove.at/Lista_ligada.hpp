@@ -5,7 +5,7 @@ private:
 struct int_node {
         int value;
         int_node* next;
-        int_node* prev; // usar para criar novo ponteiro
+        int_node* prev; 
 };
     int_node* head;
     int_node* tail;
@@ -25,23 +25,23 @@ public:
         delete  i;
         }
     }
-    unsigned int size() { // Retorna a quantidade de elementos armazenados
+    unsigned int size() { 
         return this->size_;
     }
-    bool insert_at(unsigned int index, int value) {} // Insere elemento no índice index
-    bool remove_at(unsigned int index) {} // Remove elemento do índice index
-    int get_at(unsigned int index) { // Retorna elemento no índice index, −1 se índice inválido
+    bool insert_at(unsigned int index, int value) {} 
+    bool remove_at(unsigned int index) {} 
+    int get_at(unsigned int index) { 
         int retorno;
         if (index >= size_) retorno =  -1;
         else {
         int_node *atual = this->head;
         for (int i = 0; i < index ;i++) atual = atual->next;    // atual + 1 
-        retorno =  atual->value; // retorne o atual valor 
+        retorno =  atual->value;  
         }
         return retorno;
     } 
 
-    void clear() { // Remove todos os elementos, deixando o vetor no estado inicial
+    void clear() { 
         int_node *atual = this->head;
         int_node *i;
         while (atual != nullptr){
