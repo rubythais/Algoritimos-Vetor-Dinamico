@@ -9,7 +9,7 @@ Neste repositório contém implementações de estruturas de dados dinâmicas em
 
 ## Estrutura do Repositório
 
-- **`array_list.hpp`**: Implementação do vetor dinâmico.
+- **`Array_list.hpp`**: Implementação do vetor dinâmico.
 - **`linked_list.hpp`**: Implementação da lista duplamente ligada.
 - **`tests/`**: Diretório contendo os arquivos de teste para as estruturas.
 - **`README.md`**: Documento explicativo do projeto.
