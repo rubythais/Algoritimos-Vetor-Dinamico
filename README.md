@@ -1,5 +1,5 @@
 # Algoritimos
-# Projeto: Implementação de Estruturas Dinâmicas
+## Projeto de Implementação de vetores Dinâmicos
 - Aluna: Tâmara Thais
 - Curso: Análise e Desenvolvimento de Sistemas
 - Professor: Jorgiano Vidal
