@@ -1,133 +1,197 @@
 #ifndef __LINKED_LIST_IFRN__
 #define __LINKED_LIST_IFRN__
-class Lista_ligada {
+
+#include <iostream>
+#include <stdexcept>
+
+class linked_list {
 private:
-struct int_node {
+    struct int_node {
         int value;
         int_node* next;
-        int_node* prev; 
-};
+        int_node* prev;
+
+        int_node(int val, int_node* n = nullptr, int_node* p = nullptr)
+            : value(val), next(n), prev(p) {}
+    };
+
     int_node* head;
     int_node* tail;
     unsigned int size_;
+
 public:
-    Lista_ligada() {
-        this->head = nullptr;
-        this->tail = nullptr;
-        this->size_ = 0;
-    }
-    ~Lista_ligada() {
-        int_node *atual = this->head;
-        int_node *i;
-        while (atual != nullptr){
-        i = atual;
-        atual = atual->next;
-        delete  i;
-        }
-    }
-    unsigned int size() { 
-        return this->size_;
-    }
-    bool insert_at(unsigned int index, int value) {} 
-    bool remove_at(unsigned int index) {} 
-    int get_at(unsigned int index) { 
-        int retorno;
-        if (index >= size_) retorno =  -1;
-        else {
-        int_node *atual = this->head;
-        for (int i = 0; i < index ;i++) atual = atual->next;    // atual + 1 
-        retorno =  atual->value;  
-        }
-        return retorno;
-    } 
+    linked_list() : head(nullptr), tail(nullptr), size_(0) {}
 
-    void clear() { 
-        int_node *atual = this->head;
-        int_node *i;
-        while (atual != nullptr){
-        i = atual;
-        atual = atual->next;
-        delete  i;
-        }
-    } 
-    void push_back(int value) { 
-        int_node *novo_no = new int_node;
-        novo_no->value = value;
-        novo_no->next = nullptr;
-        novo_no->prev = this->tail;
-        if (this->head == nullptr) this->head = novo_no;
-        else this->tail->next = novo_no;
-        this->tail = novo_no;
-        size_++;
-    } 
+    ~linked_list() {
+        clear();
+    }
 
-    void push_front(int value) { 
-        int_node *novo_no = new int_node;
-        novo_no->value = value;
-        novo_no->next = head;
-        novo_no->prev = nullptr;
-        if (this->head == nullptr) this->tail = novo_no;
-        else this->head->prev = novo_no;
-        this->head = novo_no;
-        size_++;
-    } 
-    bool pop_back() { 
-     int retorno = true;
-        if (this->tail == nullptr) retorno = false;
-        int_node *atual = this->tail;
-        this->tail = this->tail->prev;
-        atual = atual->prev;
-        size_--;
-        return retorno;
-    } 
+    unsigned int size() const {
+        return size_;
+    }
+
+    unsigned int capacity() const {
+        return size_; // Capacidade é o número de elementos na lista
+    }
+
+    double percent_occupied() const {
+        return size_ > 0 ? 1.0 : 0.0; // Sempre 100% ocupado se houver elementos
+    }
+
+    void push_front(int value) {
+        int_node* new_node = new int_node(value, head);
+        if (head) {
+            head->prev = new_node;
+        } else {
+            tail = new_node;
+        }
+        head = new_node;
+        ++size_;
+    }
+
+    void push_back(int value) {
+        int_node* new_node = new int_node(value, nullptr, tail);
+        if (tail) {
+            tail->next = new_node;
+        } else {
+            head = new_node;
+        }
+        tail = new_node;
+        ++size_;
+    }
+
     bool pop_front() {
-       int retorno = true;
-        if (this->tail == nullptr) retorno = false;
-        int_node *atual = this->head;
-        this->head = this->head->next;
-        atual = atual->next;
-        size_--;
-        return retorno;
-    } 
-    int back(){
-            if (this->head == nullptr) return -1;
-            return this->head->value;
-    } 
-    int front(){ 
-            if (this->tail == nullptr) return -1;
-            return this->tail->value;
-    } 
-    bool remove(int value) {} 
-    int find(int value) { 
-        int encontrou = -1, pos = 0;
-        int_node *atual =  this->tail;
-        while (atual != nullptr){
-            if (atual->value == value) {
-                encontrou = pos;
-                break;
-            }
-        atual = atual->next; 
-        pos++;
+        if (!head) return false;
+        int_node* temp = head;
+        head = head->next;
+        if (head) {
+            head->prev = nullptr;
+        } else {
+            tail = nullptr;
         }
-        return encontrou;
-    } 
-    int count(int value) { 
-        int cont = 0;
-        int_node *atual = this->head;
-        while (atual != nullptr){
-            if (atual->value == value) cont++;
-        atual = atual->next;  
+        delete temp;
+        --size_;
+        return true;
+    }
+
+    bool pop_back() {
+        if (!tail) return false;
+        int_node* temp = tail;
+        tail = tail->prev;
+        if (tail) {
+            tail->next = nullptr;
+        } else {
+            head = nullptr;
         }
-        return cont;
-    } 
-    int sum() {
-        int soma = 0;
-        int_node *atual = this->head;
-        while(atual != nullptr){
-            soma = soma + atual->value;
-            atual = atual->next; 
+        delete temp;
+        --size_;
+        return true;
+    }
+
+    bool insert_at(unsigned int index, int value) {
+        if (index > size_) return false;
+
+        if (index == 0) {
+            push_front(value);
+            return true;
         }
-        return soma ;
-    } 
+
+        if (index == size_) {
+            push_back(value);
+            return true;
+        }
+
+        int_node* current = head;
+        for (unsigned int i = 0; i < index; ++i) {
+            current = current->next;
+        }
+
+        int_node* new_node = new int_node(value, current, current->prev);
+        current->prev->next = new_node;
+        current->prev = new_node;
+        ++size_;
+        return true;
+    }
+
+    bool remove_at(unsigned int index) {
+        if (index >= size_) return false;
+
+        if (index == 0) {
+            return pop_front();
+        }
+
+        if (index == size_ - 1) {
+            return pop_back();
+        }
+
+        int_node* current = head;
+        for (unsigned int i = 0; i < index; ++i) {
+            current = current->next;
+        }
+
+        current->prev->next = current->next;
+        current->next->prev = current->prev;
+        delete current;
+        --size_;
+        return true;
+    }
+
+    int get_at(unsigned int index) const {
+        if (index >= size_) return -1;
+
+        int_node* current = head;
+        for (unsigned int i = 0; i < index; ++i) {
+            current = current->next;
+        }
+
+        return current->value;
+    }
+
+    void clear() {
+        while (pop_front()) {}
+    }
+
+    int back() const {
+        if (!tail) return -1;
+        return tail->value;
+    }
+
+    int front() const {
+        if (!head) return -1;
+        return head->value;
+    }
+
+    int find(int value) const {
+        int_node* current = head;
+        unsigned int index = 0;
+        while (current) {
+            if (current->value == value) return index;
+            current = current->next;
+            ++index;
+        }
+        return -1;
+    }
+
+    int count(int value) const {
+        int_node* current = head;
+        int count = 0;
+        while (current) {
+            if (current->value == value) ++count;
+            current = current->next;
+        }
+        return count;
+    }
+
+    int sum() const {
+        int_node* current = head;
+        int total = 0;
+        while (current) {
+            total += current->value;
+            current = current->next;
+        }
+        return total;
+    }
 };
+
 #endif // __LINKED_LIST_IFRN__
+
