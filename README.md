@@ -1,9 +1,9 @@
-#Algoritimos
+# Algoritimos
 # Projeto: Implementação de Estruturas Dinâmicas
 - Aluna: Tâmara Thais
 - Curso: Análise e Desenvolvimento de Sistemas
 - Professor: Jorgiano Vidal
-## Descrição
+### Descrição
 
 Neste repositório contém implementações de estruturas de dados dinâmicas em C++, especificamente de um vetor dinâmico e uma lista duplamente ligada. Essas estruturas são fundamentais para a manipulação eficiente de dados, permitindo operações como inserção, remoção e acesso a elementos de forma dinâmica.
 
