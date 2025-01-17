@@ -31,11 +31,11 @@ public:
     }
 
     unsigned int capacity() const {
-        return size_; // Capacidade é o número de elementos na lista
+        return size_; // capacidade é o número de elementos na lista
     }
 
     double percent_occupied() const {
-        return size_ > 0 ? 1.0 : 0.0; // Sempre 100% ocupado se houver elementos
+        return size_ > 0 ? 1.0 : 0.0; // sempre 100% ocupado se houver elementos
     }
 
     void push_front(int value) {
