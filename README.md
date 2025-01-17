@@ -7,6 +7,13 @@
 
 Neste repositório contém implementações de estruturas de dados dinâmicas em C++, especificamente de um vetor dinâmico e uma lista duplamente ligada. Essas estruturas são fundamentais para a manipulação eficiente de dados, permitindo operações como inserção, remoção e acesso a elementos de forma dinâmica.
 
+## Estrutura do Repositório
+
+- **`array_list.hpp`**: Implementação do vetor dinâmico.
+- **`linked_list.hpp`**: Implementação da lista duplamente ligada.
+- **`tests/`**: Diretório contendo os arquivos de teste para as estruturas.
+- **`README.md`**: Documento explicativo do projeto.
+
 ## Implementações
 
 - **Vetor Dinâmico (`array_list.hpp`)**:
