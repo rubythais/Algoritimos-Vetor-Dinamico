@@ -45,5 +45,5 @@ Neste repositório contém implementações de estruturas de dados dinâmicas em
 
 
 -------------------------------------------------------
-   ## APANHANDO PARA APRENDER A USAR O GITHUB
+   # APANHANDO PARA APRENDER A USAR O GITHUB
 
