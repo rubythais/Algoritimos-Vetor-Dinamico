@@ -28,19 +28,7 @@ Neste repositório contém implementações de estruturas de dados dinâmicas em
     - `capacity()`: Retorna a capacidade atual do vetor.
     - `clear()`: Remove todos os elementos do vetor.
 
-- **Lista Duplamente Ligada (`linked_list.hpp`)**:
-  - Implementa uma lista onde cada nó possui ponteiros para o próximo e o anterior, permitindo navegação bidirecional.
-  - Métodos principais:
-    - `push_front()`: Adiciona um elemento no início da lista.
-    - `push_back()`: Adiciona um elemento no final da lista.
-    - `pop_front()`: Remove o primeiro elemento da lista.
-    - `pop_back()`: Remove o último elemento da lista.
-    - `insert()`: Insere um elemento em uma posição específica.
-    - `erase()`: Remove um elemento de uma posição específica.
-    - `size()`: Retorna o número de elementos na lista.
-    - `clear()`: Remove todos os elementos da lista.
-
-## Requisitos
+## Utilizados:
 
 - **Linguagem**: C++
 - **Compilador**: GCC ou qualquer outro compatível com C++17.
@@ -52,3 +40,10 @@ Neste repositório contém implementações de estruturas de dados dinâmicas em
    ```bash
    git clone https://github.com/rubythais/arraydinamico_Algoritimos.git
    cd arraydinamico_Algoritimos
+
+
+
+
+-------------------------------------------------------
+   ## APANHANDO PARA APRENDER A USAR O GITHUB
+
